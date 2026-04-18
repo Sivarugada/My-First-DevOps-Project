@@ -1,0 +1,36 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage('Step 1: Environment Check') {
+            steps {
+                echo 'Checking Environment...'
+                sh 'uptime'
+                sh 'whoami'
+            }
+        }
+
+        stage('Step 2: Workspace Test') {
+            steps {
+                echo 'Creating a dummy file...'
+                sh 'echo "DevOps Test" > testfile.txt'
+            }
+        }
+
+        stage('Step 3: Verification') {
+            steps {
+                echo 'Reading the file...'
+                sh 'cat testfile.txt'
+            }
+        }
+    }
+    
+    post {
+        always {
+            echo 'Pipeline test execution finished.'
+        }
+        success {
+            echo 'Status: SUCCESS - Everything is working!'
+        }
+    }
+}
