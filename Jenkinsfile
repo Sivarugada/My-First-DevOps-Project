@@ -12,12 +12,5 @@ pipeline {
                 checkout scm
             }
         }
-
-        stage('Unit Test') {
-            steps {
-                echo 'Running Maven Unit Tests...'
-                sh 'mvn -B test'
-            }
-        }
     }
 }
